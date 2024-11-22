@@ -1,1 +1,0 @@
-# ionic_pokemon_project
