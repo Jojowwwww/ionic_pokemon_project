@@ -1,3 +1,22 @@
 <ion-app>
   <ion-router-outlet></ion-router-outlet>
+
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="pokemon" routerLink="/pokemon">
+        <ion-icon name="list-outline"></ion-icon>
+        <ion-label>Liste des pokémons</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="camera" routerLink="/camera">
+        <ion-icon name="camera-outline"></ion-icon>
+        <ion-label>Caméra</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="about" routerLink="/about">
+        <ion-icon name="information-circle-outline"></ion-icon>
+        <ion-label>A propos</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-app>

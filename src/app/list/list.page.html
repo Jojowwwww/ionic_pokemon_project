@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title>
+        Liste des pokémons
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-grid>
+      <ion-row>
+        <ion-col sizeMd="3" sizeSm="6" size="12" *ngFor="let pokemon of pokemonList">
+          <ion-card class="pkmn-card">
+            <ion-img [src]="pokemon.picture" class="card-image"></ion-img>
+            <ion-card-content>
+              <h2>{{ pokemon.name }}</h2>
+              <p><small>{{ pokemon.created | date: 'dd/MM/yyyy' | uppercase }}</small></p>
+              <div>
+                <ion-badge *ngFor="let type of pokemon.types" [style.background-color]="type | pokemonTypeColor">
+                  {{ type }}
+                </ion-badge>             
+              </div>
+              <ion-button (click)="goToPokemon(pokemon)" color="primary">
+                Voir Détails
+              </ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button color="primary" (click)="goToAddPokemon()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+</ion-content>  

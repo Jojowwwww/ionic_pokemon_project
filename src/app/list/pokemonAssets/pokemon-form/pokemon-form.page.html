@@ -1,0 +1,92 @@
+<ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4" size-md="3">
+        <ion-img [src]="pokemon.picture"></ion-img>
+      </ion-col>
+
+      <ion-col size="8" size-md="9">
+        <form (ngSubmit)="onSubmit()" #pokemonForm="ngForm">
+          <ion-item>
+            <ion-label position="floating">Nom</ion-label>
+            <ion-input 
+              type="text" 
+              required 
+              pattern="^[a-zA-Z0-9àéèç]{1,25}$" 
+              [(ngModel)]="pokemon.name" 
+              name="name" 
+              #name="ngModel">
+            </ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="!name.valid && !name.pristine">
+            Le nom du pokémon est requis (1-25 caractères).
+          </ion-text>
+
+          <ion-item *ngIf="isAddForm">
+            <ion-label expand="block" position="floating">Image (URL)</ion-label>
+            <ion-input 
+              type="url" 
+              required 
+              [(ngModel)]="pokemon.picture" 
+              name="picture" 
+              #picture="ngModel">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Points de Vie</ion-label>
+            <ion-input 
+              type="number" 
+              required 
+              min="0" 
+              max="999" 
+              [(ngModel)]="pokemon.hp" 
+              name="hp" 
+              #hp="ngModel">
+            </ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="!hp.valid && !hp.pristine">
+            Les points de vie doivent être compris entre 0 et 999.
+          </ion-text>
+
+          <ion-item>
+            <ion-label position="floating">Dégâts</ion-label>
+            <ion-input 
+              type="number" 
+              required 
+              min="0" 
+              max="99" 
+              [(ngModel)]="pokemon.cp" 
+              name="cp" 
+              #cp="ngModel">
+            </ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="!cp.valid && !cp.pristine">
+            Les dégâts doivent être compris entre 0 et 99.
+          </ion-text>
+
+          <ion-list>
+            <ion-item-divider>
+              <ion-label>Types</ion-label>
+            </ion-item-divider>
+            <ion-item *ngFor="let type of types">
+              <ion-checkbox 
+                slot="start" 
+                [checked]="hasType(type)" 
+                [disabled]="!isTypesValid(type)" 
+                (ionChange)="selectType($event, type)">
+              </ion-checkbox>
+              <ion-label>
+                <ion-badge [style.background-color]="type | pokemonTypeColor">{{ type }}</ion-badge>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+
+          <ion-footer class="ion-padding">
+            <ion-button type="submit" expand="block" [disabled]="!pokemonForm.form.valid">Valider</ion-button>
+          </ion-footer>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>

@@ -1,0 +1,13 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Éditer {{ pokemon?.name }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-grid>
+        <ion-col size="12">
+          <app-pokemon-form *ngIf="pokemon" [pokemon]="pokemon"></app-pokemon-form>
+        </ion-col>
+    </ion-grid>
+</ion-content>  
